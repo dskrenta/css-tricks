@@ -1,0 +1,62 @@
+<!doctype>
+<html>
+  <head>
+    <title>TextFit</title>
+  </head>
+  <body>
+    <!-- No line breaks -->
+    <div class="box" style="width:400px; height:100px; border: 1px dashed red;">
+      Fit me, I am some text
+    </div>
+    <label>No line breaks</label>
+    <p />
+    <!-- With added line breaks -->
+    <div class="box" style="width:400px; height:100px; border: 1px dashed red;">
+      Fit me, I am some text <br />
+      Another line
+    </div>
+    <label>With added line breaks</label>
+    <p />
+    <!-- Auto inserted line breaks -->
+    <div class="box1" style="width:400px; height:100px; border: 1px dashed red;">
+      Fit me, I am some text I am some more text Another line
+    </div>
+    <label>Auto inserted line breaks</label>
+    <script src="textFit.min.js"></script>
+    <script>
+      const MULTILINE_LENGTH = 30;
+
+      textFit(document.getElementsByClassName('box'), {
+        multiline: true,
+        alignHoriz: true,
+        alignVert: true,
+        minFontSize: 10,
+        maxFontSize: 50
+      });
+
+      addLineBreaks('.box1');
+
+      textFit(document.getElementsByClassName('box1'), {
+        multiline: true,
+        alignHoriz: true,
+        alignVert: true,
+        minFontSize: 10,
+        maxFontSize: 50
+      });
+
+      function addLineBreaks(selector) {
+        var element = document.querySelector(selector);
+        var text = element.innerText;
+        if (text.length >= MULTILINE_LENGTH) {
+          var res = text.split(' ');
+          var middle = Math.round(res.length / 2);
+          var firstHalf = res.slice(0, middle);
+          firstHalf.push('<br />');
+          element.innerHTML = firstHalf.concat(res.slice(middle, res.length)).join(' ');
+        } else {
+          element.innerHTML = text;
+        }
+      }
+    </script>
+  </body>
+</html>
