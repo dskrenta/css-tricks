@@ -2,8 +2,11 @@
 
 ## How to use
 Download or clone the repo
+
 Copy textFit.min.js to your vendor js directory
+
 Include /path/to/textFit.min.js on your page
+
 Create a new js file and add or add directly insert into html script section
 
 ```
